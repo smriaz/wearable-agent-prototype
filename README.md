@@ -1,4 +1,4 @@
-# Wearable Agent Prototype (Streamlit)
+# Wearable Agent Prototype: Open-source Implementation
 
 A small demo of a **bounded, uncertainty-aware agentic layer** on top of wearable-like daily signals.
 - Feature extraction + data quality
