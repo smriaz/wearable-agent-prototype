@@ -1,4 +1,5 @@
 # Wearable Agent Prototype: Open-source Implementation
+# S. M. Riazul Islam
 
 A small demo of a **bounded, uncertainty-aware agentic layer** on top of wearable-like daily signals.
 - Feature extraction + data quality
