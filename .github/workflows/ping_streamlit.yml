@@ -9,19 +9,12 @@ jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping Streamlit (debug)
+      - name: Ping Streamlit (status check)
         run: |
-          URL="https://wearable-agent-prototype.streamlit.app"
+          URL="https://wearable-agent-prototype.streamlit.app/"
           echo "Pinging: $URL"
 
-          # Show headers and status (helps diagnose 403/503/redirects)
-          curl -A "Mozilla/5.0" -sS -L -D /tmp/headers.txt -o /dev/null --max-time 40 "$URL" || true
-          echo "---- Response headers ----"
-          cat /tmp/headers.txt || true
-          echo "--------------------------"
-
-          # Fail only if we don't get a successful HTTP code
-          code=$(curl -A "Mozilla/5.0" -sS -L -o /dev/null -w "%{http_code}" --max-time 40 "$URL" || echo "000")
+          code=$(curl -A "Mozilla/5.0" -H "Accept: text/html" -sS -L -o /dev/null -w "%{http_code}" --max-time 60 "$URL" || echo "000")
           echo "HTTP status: $code"
 
           if [ "$code" = "200" ] || [ "$code" = "302" ] || [ "$code" = "303" ]; then
