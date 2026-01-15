@@ -1,3 +1,5 @@
+from src.ui import render_header
+
 import streamlit as st
 import matplotlib.pyplot as plt
 
@@ -6,6 +8,7 @@ from src.features import compute_features
 
 
 init_state()
+render_header("2) Trends & Quality")
 
 st.title("2) Trends & Quality")
 
