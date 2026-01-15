@@ -13,16 +13,19 @@ def _chip(label: str, value: str, ok: bool | None = None) -> None:
     else:
         st.info(f"**{label}:** {value}")
 
+import streamlit as st
+
+# 1️⃣ State initializers FIRST
+def ensure_demo_mode_state() -> None:
+    if "demo_mode" not in st.session_state:
+        st.session_state.demo_mode = False
+
 def ensure_model_state() -> None:
     if "selected_model" not in st.session_state:
         st.session_state.selected_model = "gpt-4.1-mini"
 
-
+# 2️⃣ Sidebar controls SECOND
 def render_sidebar_controls() -> None:
-    """
-    Sidebar controls that are safe to show on every page.
-    Keep minimal to avoid conflict with page-specific sidebars.
-    """
     ensure_demo_mode_state()
     ensure_model_state()
 
@@ -38,11 +41,37 @@ def render_sidebar_controls() -> None:
         st.session_state.selected_model = st.selectbox(
             "LLM model",
             ["gpt-4.1-mini", "gpt-4.1", "gpt-4o-mini"],
-            index=["gpt-4.1-mini", "gpt-4.1", "gpt-4o-mini"].index(st.session_state.selected_model)
+            index=["gpt-4.1-mini", "gpt-4.1", "gpt-4o-mini"].index(
+                st.session_state.selected_model
+            )
             if st.session_state.selected_model in ["gpt-4.1-mini", "gpt-4.1", "gpt-4o-mini"]
             else 0,
             help="Selected once for the session; used by agent summary and chat.",
         )
+
+# 3️⃣ Header LAST
+def render_header(page_title: str) -> None:
+    render_sidebar_controls()
+
+    st.title(page_title)
+
+    df = st.session_state.get("df")
+    features = st.session_state.get("features")
+    escalation = st.session_state.get("escalation")
+    model = st.session_state.get("selected_model")
+
+    c1, c2, c3, c4 = st.columns(4)
+
+    with c1:
+        st.success("**Data:** loaded") if df is not None else st.info("**Data:** missing")
+    with c2:
+        st.success("**Features:** ready") if features is not None else st.info("**Features:** pending")
+    with c3:
+        st.success("**Escalation:** ready") if escalation is not None else st.info("**Escalation:** pending")
+    with c4:
+        st.info(f"**Model:** {model}" if model else "**Model:** not set")
+
+    st.divider()
 
 def render_header(page_title: str) -> None:
     """
