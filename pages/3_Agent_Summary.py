@@ -1,3 +1,5 @@
+from src.ui import render_header
+
 import os
 from datetime import datetime
 import streamlit as st
@@ -72,6 +74,7 @@ def _build_concise_clinician_prompt(features: dict, escalation: dict, user_conte
 # =========================================================
 
 init_state()
+render_header("3) Agent Summary")
 
 st.title("3) Agent Summary (bounded + agentic)")
 
