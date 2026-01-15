@@ -120,11 +120,8 @@ if os.environ.get("OPENAI_API_KEY") is None:
     st.warning("OPENAI_API_KEY not set. Add it in Streamlit Cloud → App → Settings → Secrets.")
     st.stop()
 
-model = st.selectbox(
-    "Model",
-    ["gpt-4.1-mini", "gpt-4.1", "gpt-4o-mini"],
-    index=0,
-)
+model = st.session_state.get("selected_model", "gpt-4.1-mini")
+
 
 user_context = st.text_input(
     "Optional context (travel, illness symptoms, schedule changes, etc.)",
