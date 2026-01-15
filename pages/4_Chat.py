@@ -1,3 +1,5 @@
+from src.ui import render_header
+
 import os
 import streamlit as st
 
@@ -9,6 +11,7 @@ from src.llm import generate_text
 
 
 init_state()
+render_header("4) Chat")
 
 st.title("4) Ask the Agent (grounded chat)")
 
