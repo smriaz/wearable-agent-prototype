@@ -34,7 +34,8 @@ if os.environ.get("OPENAI_API_KEY") is None:
     st.warning("OPENAI_API_KEY not set. In Streamlit Cloud, add it under App → Settings → Secrets.")
     st.stop()
 
-model = st.selectbox("Model", ["gpt-4.1-mini", "gpt-4.1", "gpt-4o-mini"], index=0)
+model = st.session_state.get("selected_model", "gpt-4.1-mini")
+
 
 st.caption("Ask questions like: 'Why did my resting heart rate change?' or 'What does low wear time mean?'")
 
