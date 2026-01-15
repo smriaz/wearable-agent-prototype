@@ -13,22 +13,35 @@ def _chip(label: str, value: str, ok: bool | None = None) -> None:
     else:
         st.info(f"**{label}:** {value}")
 
-def ensure_demo_mode_state() -> None:
-    if "demo_mode" not in st.session_state:
-        st.session_state.demo_mode = False
+def ensure_model_state() -> None:
+    if "selected_model" not in st.session_state:
+        st.session_state.selected_model = "gpt-4.1-mini"
+
 
 def render_sidebar_controls() -> None:
     """
     Sidebar controls that are safe to show on every page.
-    We keep it minimal to avoid conflicting with page-specific sidebars.
+    Keep minimal to avoid conflict with page-specific sidebars.
     """
     ensure_demo_mode_state()
+    ensure_model_state()
+
     with st.sidebar:
         st.markdown("### Prototype Controls")
+
         st.session_state.demo_mode = st.toggle(
             "Demo mode (clean screenshots)",
             value=st.session_state.demo_mode,
             help="Hides raw tables and reduces visual clutter for demos/screenshots.",
+        )
+
+        st.session_state.selected_model = st.selectbox(
+            "LLM model",
+            ["gpt-4.1-mini", "gpt-4.1", "gpt-4o-mini"],
+            index=["gpt-4.1-mini", "gpt-4.1", "gpt-4o-mini"].index(st.session_state.selected_model)
+            if st.session_state.selected_model in ["gpt-4.1-mini", "gpt-4.1", "gpt-4o-mini"]
+            else 0,
+            help="Selected once for the session; used by agent summary and chat.",
         )
 
 def render_header(page_title: str) -> None:
