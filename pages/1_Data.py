@@ -12,7 +12,6 @@ from src.features import load_and_validate
 init_state()
 render_header("1) Data")
 
-st.title("1) Data")
 st.write("Upload a CSV or generate simulated wearable-style data.")
 
 col1, col2 = st.columns(2)
