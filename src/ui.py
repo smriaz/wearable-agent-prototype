@@ -49,6 +49,10 @@ def render_sidebar_controls() -> None:
             help="Selected once for the session; used by agent summary and chat.",
         )
 
+        st.markdown("---")
+        st.markdown("[ℹ️ About / Framework](./About_Framework)")
+
+
 # 3️⃣ Header LAST
 def render_header(page_title: str) -> None:
     render_sidebar_controls()
