@@ -1,21 +1,42 @@
 # Wearable Agent Prototype: Open-source Implementation
-# S. M. Riazul Islam
+**S. M. Riazul Islam**
 
-A small demo of a **bounded, uncertainty-aware agentic layer** on top of wearable-like daily signals.
-- Feature extraction + data quality
-- Rule-based escalation (LLM does not decide)
-- LLM-generated user summary + clinician note
-- One-step "agentic" clarifying question loop
+A lightweight research prototype demonstrating a **bounded, uncertainty-aware agentic layer**
+built on top of wearable-style daily aggregate signals. The system illustrates how deterministic
+processing, rule-based control, and LLM-powered interpretation can be combined in a
+human-in-the-loop digital health workflow.
 
-## Run on Streamlit Community Cloud
-1. Fork or use this repo.
-2. Go to Streamlit Community Cloud and deploy the repo.
-3. Add a secret:
-   - Key: `OPENAI_API_KEY`
-   - Value: your OpenAI API key
+### Key features
+- Deterministic feature extraction and data quality assessment
+- Transparent, rule-based escalation (LLM does not make escalation decisions)
+- LLM-generated user-facing summaries and clinician-style notes
+- One-step agentic clarification loop constrained by system rules
+- Interactive web interface with exportable artifacts
 
-## Data format
-CSV columns:
+---
+
+## Live demo
+🔗 **Streamlit Community Cloud:**  
+https://wearable-agent-prototype.streamlit.app/
+
+---
+
+## Deployment (Streamlit Community Cloud)
+1. Fork or clone this repository.
+2. Deploy the repository on Streamlit Community Cloud.
+3. Add a secret in Streamlit settings:
+   - **Key:** `OPENAI_API_KEY`
+   - **Value:** your OpenAI API key
+
+No local installation is required.
+
+---
+
+## Data handling
+The prototype operates on **wearable-style daily aggregates** rather than raw sensor streams.
+
+### Expected CSV columns
+Required:
 - `date`
 - `steps`
 - `resting_hr`
@@ -23,4 +44,22 @@ CSV columns:
 - `sleep_efficiency`
 - `hrv_proxy`
 - `wear_time_hours`
-- optional: `notes`
+
+Optional:
+- `notes` (free-text contextual annotation)
+
+Sample datasets are provided in the `data/` directory, and a built-in simulator can generate
+plausible longitudinal patterns for demonstration purposes.
+
+---
+
+## Prototype scope and limitations
+This application is intended **for research and demonstration purposes only**.  
+It does not provide medical diagnosis, treatment recommendations, or clinical decision-making.
+All LLM outputs are constrained by system-level rules and are designed to support
+interpretation and communication rather than autonomous action.
+
+---
+
+## License
+MIT License
