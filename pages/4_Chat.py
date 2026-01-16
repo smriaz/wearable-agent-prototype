@@ -13,8 +13,6 @@ from src.llm import generate_text
 init_state()
 render_header("4) Chat")
 
-st.title("4) Ask the Agent (grounded chat)")
-
 df = st.session_state.df
 if df is None:
     st.warning("Load data first in the Data page.")
