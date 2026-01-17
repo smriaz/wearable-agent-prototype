@@ -43,7 +43,9 @@ else:
         "Framework image not found"
     )
 
-st.write(
-    "How to cite: S.M.R. Islam, “Wearable Agent Prototype: Interactive demonstration,” Streamlit
-Community Cloud, 2026. [Online]"
+st.markdown(
+    "How to cite: S. M. R. Islam, *Wearable Agent Prototype: Interactive Demonstration*, "
+    "Streamlit Community Cloud, 2026. "
+    "[Online]. Available at: https://wearable-agent-prototype.streamlit.app"
 )
+
