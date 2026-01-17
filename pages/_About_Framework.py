@@ -10,7 +10,7 @@ render_header("About / Framework")
 demo_mode = st.session_state.get("demo_mode", False)
 
 st.write(
-    "This page provides a high-level view of the prototype framework and links to the public artifacts."
+    "This page provides a high-level view of the prototype framework"
 )
 
 # --- Links (you can edit these)
