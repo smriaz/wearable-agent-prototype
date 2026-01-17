@@ -21,7 +21,7 @@ if df is None:
     st.stop()
 
 # Ensure date is usable for plotting
-# (Assumes your df already has a 'date' column in the correct format)
+# (Assumes df already has a 'date' column in the correct format)
 date = df["date"]
 
 # Compute features once (cache in session_state)
