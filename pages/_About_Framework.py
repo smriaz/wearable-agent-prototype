@@ -28,7 +28,8 @@ st.divider()
 with st.expander("Prototype disclaimer", expanded=demo_mode):
     st.write(
         "This is a research prototype intended to illustrate design principles for "
-        "LLM-powered agentic systems with wearable-style data."
+        "LLM-powered agentic systems with wearable-style data. "
+        "Developed by S. M. Riazul Islam at the University of Aberdeen."
     )
 
 st.subheader("Implementation framework")
