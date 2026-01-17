@@ -48,7 +48,7 @@ with right:
 4. Ask follow-ups in **Chat**
 """
     )
-    st.caption("Tip: If you enabled **Demo mode** in the sidebar, tables/debug views are hidden for clean screenshots.")
+    st.caption("Tip: If you enabled **Demo mode** in the sidebar, tables/debug views are hidden for clean views.")
 
 st.divider()
 
