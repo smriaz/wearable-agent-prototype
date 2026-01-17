@@ -44,7 +44,7 @@ else:
     )
 
 st.markdown(
-    "How to cite: S. M. R. Islam, *Wearable Agent Prototype: Interactive Demonstration*, "
+    "**How to cite:** S. M. R. Islam, *Wearable Agent Prototype: Interactive Demonstration*, "
     "Streamlit Community Cloud, 2026. "
     "[Online]. Available at: https://wearable-agent-prototype.streamlit.app"
 )
