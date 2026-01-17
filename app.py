@@ -9,7 +9,7 @@ st.set_page_config(
 # --- Hero header ---
 st.markdown("# ⌚ Wearable Agent Prototype")
 st.caption(
-    "A lightweight research demo of a simple agentic layer on top of wearable-style daily aggregates."
+    "A lightweight research demo."
 )
 
 st.divider()
