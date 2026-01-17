@@ -13,6 +13,10 @@ init_state()
 render_header("1) Data")
 demo_mode = st.session_state.get("demo_mode", False)
 
+if "data_rerun_done" not in st.session_state:
+    st.session_state.data_rerun_done = False
+
+
 st.write("Upload a CSV, choose a bundled sample dataset, or generate simulated wearable-style data.")
 
 # ---------------------------------------------------------
@@ -20,7 +24,7 @@ st.write("Upload a CSV, choose a bundled sample dataset, or generate simulated w
 # ---------------------------------------------------------
 def _reset_downstream_states():
     # Keep this conservative: reset things that depend on df
-    for k in ["features", "escalation", "agent_outputs", "clarifying_q", "clarifying_a", "chat_messages"]:
+    for k in ["features", "escalation", "agent_outputs", "clarifying_q", "clarifying_a", "chat_messages", "data_rerun_done"]]:
         if k in st.session_state:
             st.session_state.pop(k, None)
 
@@ -30,12 +34,19 @@ def _load_df(df: pd.DataFrame, success_msg: str):
         set_df(df2)
         _reset_downstream_states()
         st.success(success_msg + f" ({len(df2)} rows).")
+
+        # one-time rerun so header chips update from missing → loaded
+        if not st.session_state.data_rerun_done:
+            st.session_state.data_rerun_done = True
+            st.rerun()
+
         if not demo_mode:
             st.dataframe(df2.tail(10), use_container_width=True)
         else:
             st.caption("Demo mode hides raw table previews.")
     except Exception as e:
         st.error(str(e))
+
 
 # ---------------------------------------------------------
 # Tabs
