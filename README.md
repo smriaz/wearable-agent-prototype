@@ -64,7 +64,7 @@ interpretation and communication rather than autonomous action.
 ## How to cite
 S. M. R. Islam, “Wearable Agent Prototype: Open-source Implementation,”
 GitHub repository, 2026. [Online]. Available:
-https://github.com/<your-username>/wearable-agent-prototype
+https://github.com/smriaz/wearable-agent-prototype
 
 
 ## License
