@@ -42,10 +42,10 @@ with right:
     st.markdown("### Quick start")
     st.markdown(
         """
-1. Load a dataset in **1) Data** (sample/upload/simulate)  
-2. Review patterns in **2) Trends & Quality**  
-3. Generate outputs in **3) Agent Summary**  
-4. Ask follow-ups in **4) Chat**
+1. Load a dataset in **Data** (sample/upload/simulate)  
+2. Review patterns in **Trends & Quality**  
+3. Generate outputs in **Agent Summary**  
+4. Ask follow-ups in **Chat**
 """
     )
     st.caption("Tip: If you enabled **Demo mode** in the sidebar, tables/debug views are hidden for clean screenshots.")
@@ -56,16 +56,16 @@ st.divider()
 c1, c2, c3, c4 = st.columns(4)
 
 with c1:
-    st.subheader("1) Data")
+    st.subheader("STEP 1 Data")
     st.caption("Upload / sample / simulate")
 with c2:
-    st.subheader("2) Trends")
+    st.subheader("STEP 2 Trends")
     st.caption("Plots + coverage checks")
 with c3:
-    st.subheader("3) Agent")
+    st.subheader("STEP 3 Agent")
     st.caption("Escalation + summaries")
 with c4:
-    st.subheader("4) Chat")
+    st.subheader("STEP 4 Chat")
     st.caption("Questions grounded in features")
 
-st.caption("Open-source prototype • Streamlit Community Cloud • OpenAI API")
+st.caption("Open-source prototype • GitHub Repo • Streamlit Community Cloud • OpenAI API")
