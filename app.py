@@ -20,8 +20,7 @@ left, right = st.columns([1.35, 1], gap="large")
 with left:
     st.markdown(
         """
-This prototype demonstrates a **bounded, uncertainty-aware agentic layer** on top of wearable-like time series.
-Use the pages in the sidebar to follow a simple workflow:
+This prototype demonstrates an AI agent designed for wearable-like time-series data, with built-in uncertainty handling. Use the sidebar to follow a simple workflow:
 - **Data**: Upload or simulate data
 - **Trends & Quality**: Trends and coverage checks
 - **Agent Summary**: Insights and next steps
