@@ -9,7 +9,7 @@ st.set_page_config(
 # --- Hero header ---
 st.markdown("# ⌚ Wearable Agent Prototype")
 st.caption(
-    "A lightweight research demo of a **bounded, uncertainty-aware agentic layer** on top of wearable-style daily aggregates."
+    "A lightweight research demo of a simple agentic layer** on top of wearable-style daily aggregates."
 )
 
 st.divider()
@@ -68,4 +68,4 @@ with c4:
     st.subheader("STEP 4 Chat")
     st.caption("Questions grounded in features")
 
-st.caption("Open-source prototype • GitHub Repo • Streamlit Community Cloud • OpenAI API")
+st.caption("Open-source prototype (feedback welcome)")
