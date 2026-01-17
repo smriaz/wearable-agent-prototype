@@ -11,6 +11,10 @@ init_state()
 render_header("2) Trends & Quality")
 demo_mode = st.session_state.get("demo_mode", False)
 
+if "tq_rerun_done" not in st.session_state:
+    st.session_state.tq_rerun_done = False
+
+
 df = st.session_state.get("df")
 if df is None:
     st.warning("Load data first in the Data page.")
@@ -24,9 +28,16 @@ date = df["date"]
 if st.session_state.get("features") is None:
     try:
         st.session_state.features = compute_features(df)
+
+        # one-time rerun so the header chips update from pending → green
+        if not st.session_state.tq_rerun_done:
+            st.session_state.tq_rerun_done = True
+            st.rerun()
+
     except Exception as e:
         st.error(str(e))
         st.stop()
+
 
 features = st.session_state.features
 
