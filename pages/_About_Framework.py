@@ -28,18 +28,16 @@ st.divider()
 with st.expander("Prototype disclaimer", expanded=demo_mode):
     st.write(
         "This is a research prototype intended to illustrate design principles for "
-        "LLM-powered agentic systems with wearable-style data. It does not provide "
-        "diagnosis or treatment recommendations."
+        "LLM-powered agentic systems with wearable-style data."
     )
 
 st.subheader("Implementation framework")
 
-# Put your framework image at: assets/framework.png (recommended)
+# Framework image at: assets/framework.png
 img_path = Path("assets/framework.png")
 if img_path.exists():
     st.image(str(img_path), caption="Prototype implementation framework.", use_container_width=True)
 else:
     st.info(
-        "Add your framework image at `assets/framework.png` to display it here "
-        "(recommended for paper screenshots)."
+        "Framework image not found"
     )
