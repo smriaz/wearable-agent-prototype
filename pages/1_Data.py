@@ -13,42 +13,45 @@ init_state()
 render_header("1) Data")
 demo_mode = st.session_state.get("demo_mode", False)
 
-
+# one-time rerun guard for header chips
+if "data_rerun_done" not in st.session_state:
+    st.session_state.data_rerun_done = False
 
 st.write("Upload a CSV, choose a bundled sample dataset, or generate simulated wearable-style data.")
 
-# ---------------------------------------------------------
-# Helpers
-# ---------------------------------------------------------
+
 def _reset_downstream_states():
-    # Keep this conservative: reset things that depend on df
-    for k in ["features", "escalation", "agent_outputs", "clarifying_q", "clarifying_a", "chat_messages"]]:
+    # Reset things that depend on df so outputs don't become stale
+    for k in ["features", "escalation", "agent_outputs", "clarifying_q", "clarifying_a", "chat_messages"]:
         if k in st.session_state:
             st.session_state.pop(k, None)
+    # allow rerun on next data load
+    st.session_state.data_rerun_done = False
+
 
 def _load_df(df: pd.DataFrame, success_msg: str):
     try:
         df2 = load_and_validate(df)
         set_df(df2)
         _reset_downstream_states()
-        st.success(success_msg + f" ({len(df2)} rows).")
-        
+        st.success(f"{success_msg} ({len(df2)} rows).")
+
+        # one-time rerun so header chips update immediately
+        if not st.session_state.data_rerun_done:
+            st.session_state.data_rerun_done = True
+            st.rerun()
+
         if not demo_mode:
             st.dataframe(df2.tail(10), use_container_width=True)
         else:
             st.caption("Demo mode hides raw table previews.")
+
     except Exception as e:
         st.error(str(e))
 
 
-# ---------------------------------------------------------
-# Tabs
-# ---------------------------------------------------------
 tabs = st.tabs(["Upload CSV", "Sample data", "Simulate"])
 
-# -------------------------
-# Tab 1: Upload
-# -------------------------
 with tabs[0]:
     st.subheader("Upload CSV")
     uploaded = st.file_uploader("Choose a CSV", type=["csv"])
@@ -57,16 +60,11 @@ with tabs[0]:
         if st.button("Load uploaded CSV", use_container_width=True):
             _load_df(df, "Loaded uploaded dataset")
 
-# -------------------------
-# Tab 2: Sample data
-# -------------------------
 with tabs[1]:
     st.subheader("Use bundled sample data")
 
     data_dir = Path("data")
-    sample_files = []
-    if data_dir.exists():
-        sample_files = sorted([p.name for p in data_dir.glob("*.csv")])
+    sample_files = sorted([p.name for p in data_dir.glob("*.csv")]) if data_dir.exists() else []
 
     if not sample_files:
         st.info("No sample CSVs found in `data/`. Add `sample_user.csv` and `sample_user_missing.csv` to enable this tab.")
@@ -76,9 +74,6 @@ with tabs[1]:
             df = pd.read_csv(data_dir / sample_name)
             _load_df(df, f"Loaded sample dataset: {sample_name}")
 
-# -------------------------
-# Tab 3: Simulate
-# -------------------------
 with tabs[2]:
     st.subheader("Simulate data")
 
@@ -93,9 +88,7 @@ with tabs[2]:
         df = generate_simulated_user(SimConfig(days=days, seed=seed, profile=profile))
         _load_df(df, f"Generated simulated dataset ({profile})")
 
-# ---------------------------------------------------------
-# Current dataset snapshot (clean + demo mode aware)
-# ---------------------------------------------------------
+
 st.divider()
 
 df_current = st.session_state.get("df")
