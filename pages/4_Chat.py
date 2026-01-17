@@ -4,7 +4,7 @@ import streamlit as st
 from src.storage import init_state
 from src.ui import render_header
 from src.prompts import SYSTEM_BASE
-from src.llm import generate_text  # adjust if your chat currently uses a different function
+from src.llm import generate_text  
 
 
 init_state()
