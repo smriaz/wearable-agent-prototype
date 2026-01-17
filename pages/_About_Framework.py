@@ -42,3 +42,8 @@ else:
     st.info(
         "Framework image not found"
     )
+
+st.write(
+    "How to cite: S.M.R. Islam, “Wearable Agent Prototype: Interactive demonstration,” Streamlit
+Community Cloud, 2026. [Online]"
+)
