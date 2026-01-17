@@ -22,10 +22,10 @@ with left:
         """
 This prototype demonstrates a **bounded, uncertainty-aware agentic layer** on top of wearable-like time series.
 Use the pages in the sidebar to follow a simple workflow:
-- **Data**: upload CSV or generate simulated data
-- **Trends & Quality**: view trends and data coverage
-- **Agent Summary**: rule-based escalation + LLM summaries + clarifying question loop
-- **Chat**: ask questions grounded in computed features
+- **Data**: Upload or simulate data
+- **Trends & Quality**: Trends and coverage checks
+- **Agent Summary**: Insights and next steps
+- **Chat**: Ask questions and explore insights
 """
     )
 
