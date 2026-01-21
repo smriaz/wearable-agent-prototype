@@ -2,7 +2,8 @@ name: Ping Streamlit App
 
 on:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "0 * * * *"
+
   workflow_dispatch:
 
 jobs:
